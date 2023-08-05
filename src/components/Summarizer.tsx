@@ -54,7 +54,9 @@ const Summarizer = (props: Props) => {
         setAllArticles(updatedAllArticles);
         localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
       }
-    } catch (error) {}
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
   const handleKeyDown = (e: any) => {
     if (e.keyCode === 13) {
