@@ -13,6 +13,8 @@ const Summarizer = (props: Props) => {
   const [article, setArticle] = React.useState({
     url: "",
     summary: "",
+    images: [],
+    title: "",
   });
   const [allArticles, setAllArticles] = React.useState<any>([]);
   const [copied, setCopied] = React.useState<any>("");
@@ -48,7 +50,7 @@ const Summarizer = (props: Props) => {
       console.log(data);
       if (data.text) {
         setIsLoading(false);
-        const newArticle = { ...article, summary: data.text };
+        const newArticle = { ...article, summary: data.text, images: data.images, title: data.title };
         const updatedAllArticles = [newArticle, ...allArticles];
         setArticle(newArticle);
         setAllArticles(updatedAllArticles);
@@ -74,13 +76,11 @@ const Summarizer = (props: Props) => {
     const updatedAllArticles = allArticles.filter((item: any) => item.url !== url);
     setAllArticles(updatedAllArticles);
     localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
-    toastList = [
-      {
-        title: "Success",
-        description: "Removed item",
-        type: "success",
-      },
-    ];
+    toastList.push({
+      title: "Success",
+      description: "Removed item",
+      type: "success",
+    });
   };
   return (
     <>

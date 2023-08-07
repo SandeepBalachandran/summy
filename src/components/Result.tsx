@@ -26,7 +26,10 @@ const Result = ({ isFetching, error, article }: Props) => {
               <h2 className="text-xl font-bold text-gray-600 font-satoshi">
                 Article <span className="blue_gradient">Summary</span>
               </h2>
-              <div className="p-3 overflow-auto summary_box max-h-80">
+              <div className="p-3 overflow-auto summary_box max-h-64">
+                <h2 className="text-sm font-medium text-gray-700 font-inter">{article?.title}</h2>
+              </div>
+              <div className="p-3 overflow-auto summary_box max-h-64">
                 <p className="text-sm font-medium text-gray-700 font-inter">{article?.summary}</p>
               </div>
             </div>
