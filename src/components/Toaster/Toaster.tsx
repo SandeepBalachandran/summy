@@ -1,6 +1,6 @@
 import { getIcon } from "@utils/icons";
 import React from "react";
-import styles from './Toaster.module.css'; // Import the CSS Modules
+import styles from "./Toaster.module.css"; // Import the CSS Modules
 
 type Props = {
   toastList: any;
@@ -66,8 +66,8 @@ const Toast = ({ position = "top-center", toastList, autoDelete = true, autoDele
 
   return (
     <React.Fragment>
-      <div className={`${styles['toast-body']} ${position}`}>
-        {list.map((toast: ToastList, index: number) => (
+      <div className={`${styles["toast-body"]} ${position}`}>
+        {list?.map((toast: ToastList, index: number) => (
           <div
             key={index}
             className={`${position} flex flex-row justify-between items-center p-3 text-white shadow-xl rounded m-2 gap-6 cursor-pointer`}
