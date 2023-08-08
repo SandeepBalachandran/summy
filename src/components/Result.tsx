@@ -8,17 +8,17 @@ type Props = {
 };
 
 const Result = ({ isFetching, error, article }: Props) => {
+  console.log(error,article)
   return (
     <>
       <div className="flex items-center justify-center max-w-full my-10">
-        {isFetching ? (
-          //   <Image src="/assets/loader.svg" width={30} height={30} alt="logo" className="object-contain w-20 h-20" />
+        {isFetching ? ( 
          <Loader/>
-        ) : error ? (
+        ) : error.isError ? (
           <p className="font-bold text-center text-black font-inter">
             Well, that was not supposed to happen...
             <br />
-            <span className="font-normal text-gray-700 font-satoshi">{error?.data?.error}</span>
+            <span className="font-normal text-red-700 font-satoshi">{article?.details}</span>
           </p>
         ) : (
           article?.summary && (

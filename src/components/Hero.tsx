@@ -11,8 +11,9 @@ const Hero = (props: Props) => {
           <br className="" />
           <span className="text-center orange_gradient">Superpowers</span>
         </h1>
-        <p className="text-center desc"> Simplify your reading with Summy, an open-source article summarizer
-        that transforms lengthy articles into clear and concise summaries.</p>
+        <p className="text-center desc">
+          Make your reading simpler using Summy, an open-source article summarizer that converts long articles into easily understandable summaries
+        </p>
       </div>
     </section>
   );

@@ -15,10 +15,12 @@ const Summarizer = (props: Props) => {
     summary: "",
     images: [],
     title: "",
+    details: "",
   });
   const [allArticles, setAllArticles] = React.useState<any>([]);
   const [copied, setCopied] = React.useState<any>("");
   const [loading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(false);
   let toastList: ToastList[] = [];
 
   React.useEffect(() => {
@@ -45,16 +47,28 @@ const Summarizer = (props: Props) => {
           url: article.url,
         }),
       });
-      console.log(response);
       const data = await response.json();
-      console.log(data);
-      if (data.text) {
+      if (data.status === "COMPLETE" && data.status_code === 200) {
         setIsLoading(false);
-        const newArticle = { ...article, summary: data.text, images: data.images, title: data.title };
+        setError(false);
+        const newArticle = {
+          ...article,
+          summary: data.text,
+          images: data.images,
+          title: data.title,
+        };
         const updatedAllArticles = [newArticle, ...allArticles];
         setArticle(newArticle);
         setAllArticles(updatedAllArticles);
         localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
+      } else {
+        setIsLoading(false);
+        setError(true);
+        const newArticle = {
+          ...article,
+          details: data.details ? data.details : "",
+        };
+        setArticle(newArticle);
       }
     } catch (error) {
       setIsLoading(false);
@@ -112,7 +126,7 @@ const Summarizer = (props: Props) => {
             ""
           )}
         </div>
-        <Result isFetching={loading} error={false} article={article} />
+        <Result isFetching={loading} error={{ isError: error, message: article.details }} article={article} />
         <Toast toastList={toastList} position="top-center" />
       </section>
     </>
