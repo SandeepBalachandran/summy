@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Summarizer",
   description: "Make summary from URL",
+  icons: {
+    icon: "./assets/favicon.ico",
+  },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
